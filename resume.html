@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Resume</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
+</head>
+<body>
+    <!-- STYLING AND SCRIPT -->
+    <!-- CSS Styling -->
+    <style>
+        /* Structure Styling */
+        html {
+            background-color: #404040;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        body {
+            background-color: white;
+            font-family: 'Roboto';
+            font-size: 16px;
+            align-content: center;
+            width: 850px;
+            height: 1100px;
+            margin: auto;
+            margin-top: 0 !important;
+        }
+
+        em {
+            font-style: unset;
+            font-weight: 400;
+            color: #1165b7;
+        }
+
+        hr {
+            height: 2px;
+            background-color: black;
+            border: 0;
+            margin-bottom: 70px;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            color: #1165b7;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        table {
+            margin: 0;
+            width: 100%;
+        }
+
+        .wrap {
+            display: block;
+        }
+
+        .left {
+            width: 100px;
+        }
+
+        .mid {
+            font-weight: bold;
+            color: #404040;
+        }
+
+        .right {
+            text-align: right;
+            font-size: 80%;
+            color: #707070;
+        }
+
+        .desc {
+            
+        }
+
+        #content {
+            padding: 80px;
+            padding-top: 70px;
+        }
+
+        #title {
+            height: 48px;
+        }
+
+        #name {
+            font-size: 40px;
+            font-weight: 100;
+            float: left;
+        }
+
+        #contact-info {
+            padding-top: 6px;
+            font-size: 12px;
+            text-align: right;
+            height: 48px;
+        }
+    </style>
+
+    <!-- Table Script -->
+    <script>
+        function makeTable(lst) {
+            document.write('<table>');
+            for (i = 0; i < lst.length; i++) {
+                document.write('<tr>');
+                document.write('<td class="left">' + lst[i][0] + '</td>');
+                document.write('<td class="mid">' + lst[i][1] + '</td>');
+                document.write('<td class="right">' + lst[i][2] + '</td>');
+                document.write('</tr>');
+                document.write('<tr><td></td>');
+                document.write('<td class="desc" colspan="2">' + lst[i][3] + '</td>');
+                document.write('</tr>');
+            }
+            document.write('</table>');
+        }
+    </script>
+
+    <!-- ACTUAL WEBPAGE -->
+    <div id="content">
+        <!-- Title Bar -->
+        <div class="wrap" id="title">
+            <div id="name">Lok In (Ivy) <em>Cheang</em></div>
+            <div id="contact-info">
+                (647) 898-7270<br />
+                github.com/ivycheang<br />
+                ivy.lokin.cheang@gmail.com
+            </div>
+        </div>
+        <hr />
+
+        <!-- Body -->
+        <div class="wrap" id="body">
+            <h3>Education</h3>
+            <script>
+                var edu =
+                    [
+                        ['Since 2013', 'BMath, Mathematical Studies', 'University of Waterloo - ON, Canada', 'Focus on Combinatorics, Optimization, and Pure Mathematics. Subjects include but is not limited to: Graph Theory, Game Theory, Number Theory, Cryptography, Operational Research, and Group Theory.']
+                    ];
+
+                makeTable(edu);
+            </script>
+
+            <h3>Experience</h3>
+            <script>
+                var exp =
+                    [
+                        ['2017', 'LiveApp', 'Software Developer Intern', 'Web development with PHP, MySQL, CSS, Javascript, and HTML. Android mobile app development. Mainly backend.']
+                    ];
+
+                makeTable(exp);
+            </script>
+
+            <h3>Projects</h3>
+            <script>
+                var proj =
+                    [
+                        ['2017', 'Videmotion', 'C#', '3rd place project at Global AI Hacathon Toronto. Web app that uses users\' emotions as implicit feedback by utilizing Microsoft Azure APIs.'],
+                        ['2017', 'Gloosuwatari', 'Android', 'Simple game where users have to find a black creature in the dark. Troll project based on a friend\'s nickname.'],
+                        ['2016', 'Antichess AI', 'C++', 'AI that plays a modified version of chess.']
+                    ];
+
+                makeTable(proj);
+            </script>
+
+            <h3>Languages</h3>
+            <table>
+                <tr>
+                    <td class="left">Proficient</td>
+                    <td class="desc">C, PHP</td>
+                </tr>
+                <tr>
+                    <td class="left">Familiar</td>
+                    <td class="desc">C++, Android, HTML, CSS, MySQL, Python , Scheme/Racket, Java</td>
+                </tr>
+            </table>
+
+            <h3>Interests</h3>
+            <p class="desc">Backend, Android Application, Game Development, Machine Learning, Webstack.</p>
+
+            <h3>Extracurricular</h3>
+            <script>
+                var ext =
+                    [
+                        ['Since 2014', 'UW A Cappella Club', '', 'President. Choreography Director. Section Leader.'],
+                        ['2014 - 2015', 'Glow Centre', '', 'Social Director. Peer Support Volunteer.']
+                    ];
+
+                makeTable(ext);
+            </script>
+
+            <h3>Awards</h3>
+            <p class="desc">University of Waterloo Merit Scholarship</p>
+        </div>
+    </div>
+</body>
+</html>
