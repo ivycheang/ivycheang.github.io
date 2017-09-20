@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>Starbucks Drink Bot</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
+    </head>
+<body>
+
+    <style>
+        body {
+            text-align: center;
+            padding-top: 180px;
+            font-family: 'Roboto';
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+        }
+        h1 {
+            color: rgb(11, 66, 26);
+            font-size: 35px;
+        }
+        th {
+            width: 80px;
+            color: rgb(54, 36, 21);
+            height: 40px;
+            vertical-align: central;
+            border-bottom: 2px;
+            border-bottom-color: rgb(96, 76, 76);
+        }
+        td {
+            color: #333333;
+            font-size: 14px;
+            height: 40px;
+            vertical-align: central;
+        }
+        #order {
+            height: 50px;
+            font-size: 20px;
+        }
+    </style>
+
+    <h1>Hi. Greet your first customer.</h1>
+
+
+    
+    <div id="order"><p id="drink-order"></p></div>
+
+    <br /><br /><br /><br /><br /><br /><br />
+
+    <table border="1" frame="void" rules="rows">
+        <tr>
+            <th>Decaf</th>
+            <th>Shots</th>
+            <th>Syrup</th>
+            <th>Milk</th>
+            <th>Custom</th>
+            <th>Drink</th>
+        </tr>
+        <tr>
+            <td id="decaf"></td>
+            <td id="shots"></td>
+            <td id="syrup"></td>
+            <td id="milk"></td>
+            <td id="custom"></td>
+            <td id="drink"></td>
+        </tr>
+    </table>
+
+    <br /><br /><br /><br />
+
+    <button onclick="newDrink()">Get Drink</button>
+    <button onclick="revealCode()">Reveal</button>
+
+    <script>
+        var drinks = [
+            { name: "Americano", code: "A" },
+            { name: "Coffee", code: "BC" },
+            { name: "Very Berry Hibiscus", code: "BHR" },
+            { name: "Shaken Black Iced Tea", code: "BT/BTL" },
+            { name: "Cappucino", code: "C" },
+            { name: "Caramel Apple Spice", code: "CAS" },
+            { name: "Cold Brew Iced Coffee", code: "CBIC/CBICM" },
+            { name: "Caramel Macchiato", code: "CM" },
+            { name: "Espresso", code: "E" },
+            { name: "Espresso con Panna", code: "ECP" },
+            { name: "Espresso Macchiato", code: "EM" },
+            { name: "London Fog", code: "EBTL/LF" },
+            { name: "English Breakfast Tea Latte", code: "EBTL/LF" },
+            { name: "Flat White", code: "FW" },
+            { name: "Iced Green Tea", code: "GT/GTL" },
+            { name: "Green Tea Latte", code: "GRTL" },
+            { name: "Hot Chocolate", code: "WHC/HC" },
+            { name: "Iced Coffee", code: "IC/ICM" },
+            { name: "Caffe Latte", code: "L" },
+            { name: "Latte Macchiato", code: "LM" },
+            { name: "Caffe Mocha", code: "M" },
+            { name: "Americano", code: "A" },
+            { name: "Caffe Misto", code: "MIS" },
+            { name: "Cafe au lait", code: "MIS" },
+            { name: "Passion Iced Tea", code: "PT/PTL" },
+            { name: "Strawberry Acai", code: "SAR" },
+            { name: "Tea Misto", code: "TMIS" },
+            { name: "Vanilla Creme", code: "VCR" },
+            { name: "White Chocolate Mocha", code: "WCM" },
+            { name: "Pumpkin Spice Latte", code: "PSL" },
+            { name: "Frappuccino", code: "F" },
+            { name: "Caramel Frappuccino", code: "CRF" },
+            { name: "Vanilla Frappuccino", code: "CVF/VF?" },
+            { name: "Coffee Frappuccino", code: "CF" },
+            { name: "Espresso Frappuccino", code: "EF" },
+            { name: "Java Chip", code: "JCF" },
+            { name: "Mocha Frappuccino", code: "MF" },
+            { name: "White Chocolate Mocha Frappuccino", code: "WMF" },
+            { name: "Vanilla Sweet Cream Cold Brew", code: "VSCCB" },
+            { name: "Starbucks Doubleshot", code: "SD" },
+            { name: "Blonde and Stormy", code: "BLST" },
+            { name: "Pineapple Black Tea", code: "PIBTI/PIBTIL" },
+            { name: "Strawberry Green Tea", code: "SGTI/SGTIL" },
+            { name: "Peach Citrus White Tea", code: "PEWTI/PEWTIL" },
+            { name: "Matcha Lemonade", code: "ML" },
+            { name: "Violet", code: "VIO" },
+            { name: "Ombre Pink", code: "CLR, CO milk, X H20 splash PT custom" },
+            { name: "Chai Creme Frappuccino", code: "CHCF" },
+            { name: "Double Chocolaty Chip Frappuccino", code: "DCCF" },
+            { name: "Green Tea Frappuccino", code: "GTF" },
+            { name: "Strawberry & Creme", code: "STCF" },
+            { name: "Syrup Creme Frapp", code: "SCF" },
+            { name: "Vanilla Bean Frappuccino", code: "VBF" },
+            { name: "Blonde Vanilla Latte", code: "VL, B shot?" },
+            { name: "Salted Caramel Mocha", code: "SCM" },
+            { name: "Salted Caramel Mocha Frappuccino", code: "SCMF" },
+        ]
+
+        var i;
+
+        function newDrink() {
+            i = Math.floor(Math.random() * drinks.length);
+
+            document.getElementById("drink-order").textContent = drinks[i]['name'];
+        }
+        function revealCode() {
+            document.getElementById("decaf").textContent = "";
+            document.getElementById("shots").textContent = "";
+            document.getElementById("syrup").textContent = "";
+            document.getElementById("milk").textContent = "";
+            document.getElementById("custom").textContent = "";
+            document.getElementById("drink").textContent = drinks[i]['code'];
+        }
+    </script>
+</body>
+</html>
